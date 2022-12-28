@@ -5,7 +5,7 @@ export const validUser = async (req, res, next) => {
     try {
         const id = req.params.id
         const user = await userServices.getUserById(id)
-
+ 
         if (!user) {
             return res.status(404).send({ message: "User not found" })
         }
