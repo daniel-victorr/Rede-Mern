@@ -6,6 +6,12 @@ const productShema = new mongoose.Schema({
     type: String,
     required: true,
    },
+
+   descricao:{
+    type: String,
+    required: true,   
+   },
+   
    preco:{
     type: String,
     required: true,   

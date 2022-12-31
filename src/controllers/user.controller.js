@@ -2,12 +2,12 @@ import userServices from '../services/user.services.js'
 
 const getById = async (req, res) => {
      try {
-        const id = req.id
+        const id = req.id    
         const user = await userServices.getUserById(id)
         .catch((err) => console.log(err.message))
 
         res.status(201).send(user)
-     } catch (erro) {
+     } catch (err) {
         res.status(500).send({ message: err.message })
      }
 }
