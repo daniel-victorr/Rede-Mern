@@ -11,4 +11,6 @@ const getUserById = (id) => User.findById(id)
 
 const update = (id, name, email, password) => User.findOneAndUpdate({_id: id}, {name, email, password})
 
-export default {create, getAll, getUser, update, getUserById}
+const erase = (id) => User.findByIdAndDelete(id)
+
+export default {create, getAll, getUser, update, getUserById, erase}

@@ -1,5 +1,17 @@
 import userServices from '../services/user.services.js'
 
+const getById = async (req, res) => {
+     try {
+        const id = req.id
+        const user = await userServices.getUserById(id)
+        .catch((err) => console.log(err.message))
+
+        res.status(201).send(user)
+     } catch (erro) {
+        res.status(500).send({ message: err.message })
+     }
+}
+
 const getAll = async (req, res) => {
     try {
 
@@ -19,9 +31,9 @@ const getAll = async (req, res) => {
 const create = async (req, res) => {
     try {
 
-        const { name, email, password } = req.body
+        const { name, email, password, tipoUsuario } = req.body
 
-        if (name === '' || email === '' || password === '') {
+        if (name === '' || email === '' || password === '' || tipoUsuario === '') {
             return res.status(401).send({ message: 'Preencha todos os campos para fazer o cadastro' })
         }
 
@@ -59,6 +71,18 @@ const update = async (req, res) => {
     }
 }
 
+const erase = async (req, res) => {
+    try {
+       const id = req.id
+       await userServices.erase(id)
+       .catch((err) => console.log(err.message)) 
 
-export { getAll, create, update }
+       res.status(201).send({message: "User deleted success"})
+
+    } catch (err) {   
+       res.status(500).send({ message: err.message })
+    }
+} 
+
+export { getAll, create, update, getById, erase }
 

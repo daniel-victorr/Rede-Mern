@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
       select: false,
    },
 
+   tipoUsuario: {
+      type: Number, default:1
+   },
+
 },
    {
       timestamps: true
