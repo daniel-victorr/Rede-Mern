@@ -1,9 +1,12 @@
 import React from "react";
+import Inicio from './pages/client/painel/painel.js'
 
 function App() {
   return (
     <div className="App">
-       <h1>Olá, Mundo!</h1>
+       <Inicio>
+
+       </Inicio>
     </div>
   );
 }
