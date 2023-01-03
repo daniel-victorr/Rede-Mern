@@ -1,12 +1,10 @@
 import React from "react";
-import Inicio from './pages/client/painel/painel.js'
+import Rotas from "./routes.js";
 
 function App() {
   return (
     <div className="App">
-       <Inicio>
-
-       </Inicio>
+      <Rotas/>
     </div>
   );
 }
