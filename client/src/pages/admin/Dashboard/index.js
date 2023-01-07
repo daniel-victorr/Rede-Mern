@@ -170,11 +170,7 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
- 
-            {/* Recent Deposits */}
-
-            {/* Recent Orders */}
+          <img src="https://www.pngmart.com/files/21/Accounting-Download-PNG-Image.png"/>
            
           </Grid>
           <Box pt={4}>

@@ -11,6 +11,9 @@ import Usuarios from './pages/admin/Produtos/index.js'
 import UsuariosCadastar from './pages/admin/Usuarios/UsuarioCadastrar.js'
 import UsuariosEditar from './pages/admin/Usuarios/UsuarioEditar.js'
 
+import SingIn from './pages/admin/SingIn/index.js'
+import SingUp from './pages/admin/SingUp/index.js'
+
 //Rota Client
 import Home from './pages/client/home/index.js'
 import ProdutosDetalhes from './pages/client/produtos/ProdutosDetalhes.js'
@@ -20,14 +23,15 @@ export default function Rotas(){
     return (
             <BrowserRouter>
                 <Routes>
-                 
-                    <Route path='/' exact element={<Home/>} />
                     
                        {/* Rota Client */}
+                    <Route path="/" element={<Home/>} />   
                     <Route path='produtos/:id' element={<ProdutosDetalhes/>} /> 
-                    <Route path='/admin' element={<Dashboard/>} />
+                    
                      
                         {/* Rota Admin */}
+                    <Route path='/admin' element={<Dashboard/>} /> 
+
                     <Route path='/admin/produtos' element={<Produtos/>} />
                     <Route path='/admin/produtos/cadastro'  element={<ProdutosCadastar/>} />
                     <Route path='/admin/produtos/editar/:id' element={<ProdutosEditar/>} />
@@ -36,9 +40,10 @@ export default function Rotas(){
                     <Route path='/admin/usuarios/cadastro'  element={<UsuariosCadastar/>} />
                     <Route path='/admin/usuarios/editar/:id' element={<UsuariosEditar/>} />  
                     
-
+                    <Route path="/SingIn" element={<SingIn/>} />
+                    <Route path="/singUp" element={<SingUp/>} />
+                        
                     <Route path='*' element={<h1>Rota não encontrada</h1>} />
-
                 </Routes>
             </BrowserRouter>
 
