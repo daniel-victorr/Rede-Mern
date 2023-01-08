@@ -1,7 +1,7 @@
 import React from 'react';
+
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -72,26 +72,5 @@ const MainListItems = (props) => {
    
   )
 }
-
-
-
-// export const secondaryListItems = (
-//   <div>
-//     <ListSubheader inset>Opções</ListSubheader>
-//     <ListItem button>
-//       <ListItemIcon>
-//         <AssignmentIcon />
-//       </ListItemIcon>
-//       <ListItemText primary="Relatório" />
-//     </ListItem>
-//     <ListItem button>
-//       <ListItemIcon>
-//         <ExitToApp />
-//       </ListItemIcon>
-//       <ListItemText primary="Sair" />
-//     </ListItem>
-//   </div>
-// );
-
 
 export default MainListItems
