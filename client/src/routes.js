@@ -11,6 +11,8 @@ import Usuarios from './pages/admin/Produtos/index.js'
 import UsuariosCadastar from './pages/admin/Usuarios/UsuarioCadastrar.js'
 import UsuariosEditar from './pages/admin/Usuarios/UsuarioEditar.js'
 
+import Relatorio from './pages/admin/Relaorio/index.js'
+
 import SingIn from './pages/admin/SingIn/index.js'
 import SingUp from './pages/admin/SingUp/index.js'
 
@@ -40,6 +42,8 @@ export default function Rotas(){
                     <Route path='/admin/usuarios/cadastro'  element={<UsuariosCadastar/>} />
                     <Route path='/admin/usuarios/editar/:id' element={<UsuariosEditar/>} />  
                     
+                    <Route path='/admin/relatorio' element={<Relatorio/>} /> 
+
                     <Route path="/SingIn" element={<SingIn/>} />
                     <Route path="/singUp" element={<SingUp/>} />
                         

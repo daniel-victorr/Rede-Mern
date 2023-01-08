@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,19 +13,20 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper'; 
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from '../../../components/Menu.js';
+//  import SecondaryListItems from '../../../components/Menu.js';
+import imagem from '../../../assets/img/img.png'
+import MainListItems from '../../../components/list-menu-admin.js'
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://www.linkedin.com/in/daniel-victor-55312a210/">
+        Daniel Victor Dev
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -116,20 +117,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
+
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
+
           <IconButton
             edge="start"
             color="inherit"
@@ -139,16 +145,22 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
           </Typography>
+
+
+          {/* Icone notificação */}
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Badge overlap="rectangular" badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
+
         </Toolbar>
       </AppBar>
+
       <Drawer
         variant="permanent"
         classes={{
@@ -161,23 +173,26 @@ export default function Dashboard() {
             <ChevronLeftIcon />
           </IconButton>
         </div>
+
         <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
+        <List>
+          <MainListItems click={() => {setOpen(old => !old)}}/>
+        </List>
+
       </Drawer>
+
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-          <img src="https://www.pngmart.com/files/21/Accounting-Download-PNG-Image.png"/>
-           
+            <img src={imagem} />
           </Grid>
           <Box pt={4}>
             <Copyright />
           </Box>
         </Container>
       </main>
+
     </div>
   );
 }
