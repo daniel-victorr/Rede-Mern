@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
  
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -81,14 +82,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBarSpacer: theme.mixins.toolbar,
-
-
   fixedHeight: {
     height: 240,
   },
 }));
 
-const Menu = () => {
+const Menu = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -101,7 +100,7 @@ const Menu = () => {
   
   return ( 
     <> 
-     
+     <CssBaseline/>
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
 
@@ -116,7 +115,7 @@ const Menu = () => {
           </IconButton>
 
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            {props.name}
           </Typography>
           
           {/* Icone notificação */}

@@ -19,7 +19,7 @@ const getAll = async (req, res) => {
         .catch((err) => console.log(err.message))
 
         if (users.length === 0) {
-            return res.status(404).send({ message: "There are no registered users" })
+             res.status(404).send({ message: "There are no registered users" })
         }
 
         res.status(200).send(users)
@@ -31,9 +31,9 @@ const getAll = async (req, res) => {
 const create = async (req, res) => {
     try {
 
-        const { name, email, password, tipoUsuario } = req.body
+        const { nome, sobreNome, email, password, tipo } = req.body
 
-        if (name === '' || email === '' || password === '' || tipoUsuario === '') {
+        if (nome === '' || sobreNome ==='' || email === '' || password === '' || tipo === '') {
             return res.status(401).send({ message: 'Preencha todos os campos para fazer o cadastro' })
         }
 
@@ -56,13 +56,13 @@ const update = async (req, res) => {
     try {
 
         const id = req.id
-        const { name, email, password } = req.body
+        const { nome, sobreNome, email, password, tipo } = req.body
 
-        if (!name && !email && !password) {
+        if (!nome && !sobreNome && !email && !password && !tipo) {
             return res.status(400).send({ message: "Submint at least one field for update" })
         }
 
-        await userServices.update(id, name, email, password)
+        await userServices.update(id, nome, sobreNome, email, password, tipo)
         .catch((err) => console.log(err.message))
 
         res.status(201).send({ message: "User successfully updated" })

@@ -9,7 +9,7 @@ const getUser = (email) => User.findOne({email:email})
 
 const getUserById = (id) => User.findById(id)
 
-const update = (id, name, email, password) => User.findOneAndUpdate({_id: id}, {name, email, password})
+const update = (id, name, sobreNome, email, password, tipo) => User.findOneAndUpdate({_id: id}, {name, sobreNome, email, password, tipo})
 
 const erase = (id) => User.findByIdAndDelete(id)
 

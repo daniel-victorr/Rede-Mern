@@ -13,6 +13,7 @@
     "@mui/styled-engine-sc": "^5.11.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "react": "^17.0.0",
     "react-bootstrap": "^2.7.0",

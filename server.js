@@ -1,10 +1,10 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import path from 'path'
-import connectedDataBase from './src/dataDB/data.js'
+import connectedDataBase from './src/dataDB/data.js' 
 import { config } from 'dotenv'
 import userRouter from './src/routes/user.routes.js'
-import productRouter from './src/routes/product.router.js'
+import productRouter from './src/routes/product.routes.js'
 import cookieParser from 'cookie-parser'
 
 const app = express()

@@ -44,8 +44,8 @@ export default function Rotas(){
                     
                     <Route path='/admin/relatorio' element={<Relatorio/>} /> 
 
-                    <Route path="/SingIn" element={<SingIn/>} />
-                    <Route path="/singUp" element={<SingUp/>} />
+                    <Route path="/SignIn" element={<SingIn/>} />
+                    <Route path="/signUp" element={<SingUp/>} />
                         
                     <Route path='*' element={<h1>Rota não encontrada</h1>} />
                 </Routes>

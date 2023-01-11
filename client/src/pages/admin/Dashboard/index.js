@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Menu from '../../../components/Menu.js';
 import imagem from '../../../assets/img/img.png'
 
-import Copyright from '../../../components/Copyright-admin.js'
+import Copyright from '../../../components/Copyright.js'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +44,7 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Menu />
+      <Menu name="DASHBOARD" />
 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
