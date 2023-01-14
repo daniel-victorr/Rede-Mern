@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -13,41 +12,19 @@ import InputLabel from '@material-ui/core/InputLabel';
 //Conponentes
 import Menu from '../../../components/Menu.js';
 import Copyright from '../../../components/Copyright.js'
-import Input from '../../../components/Input.js';
-import InputSelect from '../../../components/InputSelect.js';
 import api from '../../../services/api.js';
 import { MenuItem } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-    },
-    title: {
-        flexGrow: 1,
-    },
-    appBarSpacer: theme.mixins.toolbar,
-    content: {
-        flexGrow: 1,
-        height: '100vh',
-        overflow: 'auto',
-    },
-    container: {
-        paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(4),
-    },
-    paper: {
-        padding: 15,
-        display: 'flex',
-        overflow: 'auto',
-        flexDirection: 'column',
-    },
-}));
+
+// styles
+import useStyles from './useStyles.js'
 
 export default function Usuario() {
+    
     const classes = useStyles();
-
+     
+    //useState
     const [lista, setLista] = useState(() => { return [] })
-
     const [credenciais, setCredenciais] = useState(() => {
         return {
             nome: "",
@@ -55,23 +32,15 @@ export default function Usuario() {
             email: "",
             tipo: "",
             password: "",
-
         }
     })
 
-    const InputNome = useRef()
-    const inputEmail = useRef()
 
+    //useEffect
     useEffect(() => {
         api.get('/api/usuarios')
          .then(valores => setLista(valores.data))
     },[])
-
-
-    // useEffect(() => {
-    //     api.post('/api/usuarios',credenciais)
-    //      .then(valores => console.log(valores))
-    // },[lista])
 
 
     const adicionar = (e) => {
@@ -81,6 +50,7 @@ export default function Usuario() {
     }
 
     const cadastrar = async () => {
+
         if (credenciais.nome === '' || credenciais.sobreNome === '' || credenciais.email === '' || credenciais.password === '' || credenciais.tipo === '') {
             return console.log('Por favor preencha todos os campos!')
         }
@@ -107,8 +77,6 @@ export default function Usuario() {
             password: "",
         })
 
-        //Adicionar o Focus
-        InputNome.current.focus()
     }
 
     return (
@@ -123,13 +91,8 @@ export default function Usuario() {
                         <Grid item sm={12} >
                             <Paper className={classes.paper}>
                                 <h2>Formulário de Cadastro</h2>
-                                <Grid container spacing={3}>
-                                    {/* <Input id="nome" name="nome" label="Nome" autoComplete="nome" sm={6} value={nome} onChange={(e) => setNome(e.target.value)} />
-                                    <Input id="sobreNome" name="sobreNome" label="Sobrenome" autoComplete="sobreNome" sm={6} value={sobreNome}  onChange={(e) => setSobrenome(e.target.value)} />
-                                    <Input id="email" name="email" label="Email" autoComplete="email" sm={6} value={email}  onChange={(e) => setEmail(e.target.value)}/> */}
-                                    {/* <InputSelect id="labelTipo" labelId="labelTipo" sm={3} value={tipo} onChange={(e) => setTipo(e.target.value)} /> */}
-                                    {/* <Input id="password" name="password" label="Password" autoComplete="password" sm={3} type={'password'} value={password} onChange={(e) => setPassword(e.target.value)} /> */}
 
+                                <Grid container spacing={3}>
                                     <Grid item xs={12} sm={6}>
                                         <TextField
                                             type={"text"}
@@ -141,9 +104,9 @@ export default function Usuario() {
                                             variant="standard"
                                             onChange={(e) => setCredenciais((old) => { return { ...old, nome: e.target.value } })}
                                             value={credenciais.nome}
-                                            ref={InputNome}
                                         />
                                     </Grid>
+
                                     <Grid item xs={12} sm={6}>
                                         <TextField
 
@@ -157,6 +120,7 @@ export default function Usuario() {
                                             value={credenciais.sobreNome}
                                         />
                                     </Grid>
+
                                     <Grid item xs={12} sm={6}>
                                         <TextField
                                             type={"email"}
@@ -171,6 +135,7 @@ export default function Usuario() {
                                             value={credenciais.email}
                                         />
                                     </Grid>
+
                                     <Grid item xs={12} sm={3}>
                                         <FormControl fullWidth>
                                             <InputLabel id="labelTipo" >Tipo</InputLabel>
@@ -185,6 +150,7 @@ export default function Usuario() {
                                             </Select>
                                         </FormControl>
                                     </Grid>
+
                                     <Grid item xs={12} sm={3}>
                                         <TextField
 
@@ -197,9 +163,9 @@ export default function Usuario() {
                                             variant="standard"
                                             onChange={(e) => setCredenciais((old) => { return { ...old, password: e.target.value } })}
                                             onKeyUp={adicionar}
-                                            value={credenciais.password}
                                         />
                                     </Grid>
+
                                 </Grid>
                             </Paper>
                         </Grid>
