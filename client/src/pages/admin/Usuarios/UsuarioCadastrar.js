@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@mui/material/TextField';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+    //React
+    import React, { useState, useEffect } from 'react';
+    import { useNavigate } from 'react-router-dom';
 
-//Conponentes
-import Menu from '../../../components/Menu.js';
-import Copyright from '../../../components/Copyright.js'
-import api from '../../../services/api.js';
-import { MenuItem } from '@material-ui/core';
+    //Material UI
+    import CssBaseline from '@material-ui/core/CssBaseline';
+    import Box from '@material-ui/core/Box';
+    import Container from '@material-ui/core/Container';
+    import Grid from '@material-ui/core/Grid';
+    import Paper from '@material-ui/core/Paper';
+    import TextField from '@mui/material/TextField';
+    import Select from '@material-ui/core/Select';
+    import FormControl from '@material-ui/core/FormControl';
+    import InputLabel from '@material-ui/core/InputLabel';
+
+    //Conponentes
+    import Menu from '../../../components/Menu.js';
+    import Copyright from '../../../components/Copyright.js'
+    import api from '../../../services/api.js';
+    import { MenuItem } from '@material-ui/core';
 
 
 // styles
@@ -43,6 +47,8 @@ export default function Usuario() {
     },[])
 
 
+    const Navigate = useNavigate()
+
     const adicionar = (e) => {
         if (e.code === 'Enter') {
             cadastrar()
@@ -52,17 +58,24 @@ export default function Usuario() {
     const cadastrar = async () => {
 
         if (credenciais.nome === '' || credenciais.sobreNome === '' || credenciais.email === '' || credenciais.password === '' || credenciais.tipo === '') {
-            return console.log('Por favor preencha todos os campos!')
+            return alert('Por favor preencha todos os campos!')
         }
 
         //Verificar se existe as credenciais informadas!
         const existe = lista.find((item) => credenciais.email === item.email)
 
         if (typeof existe !== 'undefined') {
-            return console.log('Já existe este email cadastrado!')
-        }else{
-            api.post('/api/usuarios',credenciais)
+            return alert('Já existe este email cadastrado!')
         }
+           
+         const response = await api.post('/api/usuarios',credenciais)
+         
+         if (response.status === 200) {
+            alert('Usuário cadastrado com sucesso!')
+         }
+         else{
+           return alert('Erro ao cadastrar usuário!')
+         }
 
         // Atualizando a lista de dados
         setLista((old) => { return [...old, {...credenciais}]})
@@ -75,6 +88,8 @@ export default function Usuario() {
             tipo: "",
             password: "",
         })
+
+        return Navigate('/admin/usuarios')
 
     }
 

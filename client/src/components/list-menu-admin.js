@@ -22,7 +22,7 @@ const MainListItems = (props) => {
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
-          <Link className='btn btn-primary' to={'/admin/'}>Dashboard </Link>
+          <Link className='btn' to={'/admin/'}>Dashboard </Link>
         </ListItem>
 
         <ListItem button onClick={
@@ -31,7 +31,7 @@ const MainListItems = (props) => {
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
-          <Link className='btn btn-primary ' to={'/admin/usuarios'}>Usuários </Link>
+          <Link className='btn' to={'/admin/usuarios'}>Usuários </Link>
         </ListItem>
 
         <ListItem button onClick={
@@ -40,7 +40,7 @@ const MainListItems = (props) => {
           <ListItemIcon>
             <ShoppingCartIcon />
           </ListItemIcon>
-          <Link className='btn btn-primary' to={'/admin/produtos'}>Produtos </Link>
+          <Link className='btn' to={'/admin/produtos'}>Produtos </Link>
         </ListItem>
       </div>
 
@@ -55,7 +55,7 @@ const MainListItems = (props) => {
             <ListItemIcon>
               <AssignmentIcon />
             </ListItemIcon>
-            <Link className='btn btn-secondary' to={'/admin/relatorio'}>Relatório </Link>
+            <Link className='btn' to={'/admin/relatorio'}>Relatório </Link>
         </ListItem>
 
         <ListItem button onClick={
@@ -64,7 +64,7 @@ const MainListItems = (props) => {
           <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>
-          <Link className='btn btn-danger' to={'/singIn'}>Sair </Link>
+          <Link className='btn text-danger' to={'/singIn'}>Sair </Link>
         </ListItem>
      </div>
    

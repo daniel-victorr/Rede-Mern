@@ -7,7 +7,7 @@ import Produtos from './pages/admin/Produtos/index.js'
 import ProdutosCadastar from './pages/admin/Produtos/ProdutoCadastrar.js'
 import ProdutosEditar from './pages/admin/Produtos/ProdutoEditar.js'
 
-import Usuarios from './pages/admin/Produtos/index.js'
+import Usuarios from './pages/admin/Usuarios/index.js'
 import UsuariosCadastar from './pages/admin/Usuarios/UsuarioCadastrar.js'
 import UsuariosEditar from './pages/admin/Usuarios/UsuarioEditar.js'
 
@@ -44,7 +44,7 @@ export default function Rotas(){
                     
                     <Route path='/admin/relatorio' element={<Relatorio/>} /> 
 
-                    <Route path="/SignIn" element={<SingIn/>} />
+                    <Route path="/signIn" element={<SingIn/>} />
                     <Route path="/signUp" element={<SingUp/>} />
                         
                     <Route path='*' element={<h1>Rota não encontrada</h1>} />
