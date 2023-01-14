@@ -59,7 +59,6 @@ export default function Usuario() {
         const existe = lista.find((item) => credenciais.email === item.email)
 
         if (typeof existe !== 'undefined') {
-            inputEmail.current.focus()         
             return console.log('Já existe este email cadastrado!')
         }else{
             api.post('/api/usuarios',credenciais)
@@ -131,7 +130,6 @@ export default function Usuario() {
                                             autoComplete={"email"}
                                             variant="standard"
                                             onChange={(e) => setCredenciais((old) => { return { ...old, email: e.target.value } })}
-                                            ref={inputEmail}
                                             value={credenciais.email}
                                         />
                                     </Grid>
