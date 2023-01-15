@@ -1,6 +1,6 @@
 import React from "react";
 
-const Usuario = () => {
+const UsuarioEditar = () => {
     return(
         <div>
             <h1>atualizar Usuario</h1>
@@ -8,4 +8,4 @@ const Usuario = () => {
     )
 }
 
-export default Usuario
+export default UsuarioEditar

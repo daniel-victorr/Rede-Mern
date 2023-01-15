@@ -29,11 +29,11 @@ const getAll = async (req, res) => {
 }
 
 const create = async (req, res) => {
-    try {
+    try {  
 
-        const { nome, sobreNome, email, password, tipo } = req.body
+        const { id, nome, sobreNome, email, password, tipo } = req.body
 
-        if (nome === '' || sobreNome ==='' || email === '' || password === '' || tipo === '') {
+        if (id === '' || nome === '' || sobreNome ==='' || email === '' || password === '' || tipo === '') {
             return res.status(401).send({ message: 'Preencha todos os campos para fazer o cadastro' })
         }
 

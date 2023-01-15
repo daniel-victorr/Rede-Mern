@@ -5,7 +5,7 @@ import { validId, validUser } from "../middleware/usuario.middleware.js"
 const router = Router()
 
 router.get('/api/usuarios', getAll)
-router.delete('/api/usuarios/:id', validId, validUser, erase)
+router.delete('/api/usuarios/:id', erase)
 router.get('/api/usuarios/detalhes/:id', validId, validUser, getById)
 router.post('/api/usuarios', create)
 router.patch('/atualizar/:id', validId, validUser, update)

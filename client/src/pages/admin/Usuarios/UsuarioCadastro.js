@@ -1,6 +1,7 @@
     //React
     import React, { useState, useEffect } from 'react';
     import { useNavigate } from 'react-router-dom';
+    import { v4 as id } from 'uuid'
 
     //Material UI
     import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,14 +24,16 @@
 // styles
 import useStyles from './useStyles.js'
 
-export default function Usuario() {
+const UsuarioCadastrar = () => {
     
     const classes = useStyles();
-     
+        
     //useState
     const [lista, setLista] = useState(() => { return [] })
+  
     const [credenciais, setCredenciais] = useState(() => {
         return {
+            id: "",
             nome: "",
             sobreNome: "",
             email: "",
@@ -39,12 +42,17 @@ export default function Usuario() {
         }
     })
 
-
     //useEffect
-    useEffect(() => {
-        api.get('/api/usuarios')
-         .then(valores => setLista(valores.data))
-    },[])
+  useEffect(() => {
+    if (localStorage.getItem('Ecomerce') !== null) {
+      setLista(JSON.parse(localStorage.getItem('Ecomerce')))
+    }
+  }, [])
+  
+
+  useEffect(() => {
+    localStorage.setItem('Ecomerce', JSON.stringify(lista))
+  }, [lista])
 
 
     const Navigate = useNavigate()
@@ -67,7 +75,8 @@ export default function Usuario() {
         if (typeof existe !== 'undefined') {
             return alert('Já existe este email cadastrado!')
         }
-           
+          
+         credenciais.id = id()
          const response = await api.post('/api/usuarios',credenciais)
          
          if (response.status === 200) {
@@ -80,8 +89,10 @@ export default function Usuario() {
         // Atualizando a lista de dados
         setLista((old) => { return [...old, {...credenciais}]})
 
+
         //Limpando os campos ao adicinar no banco de dados
         setCredenciais({
+            id: "",
             nome: "",
             sobreNome: "",
             email: "",
@@ -90,7 +101,6 @@ export default function Usuario() {
         })
 
         return Navigate('/admin/usuarios')
-
     }
 
     return (
@@ -175,6 +185,7 @@ export default function Usuario() {
                                             autoComplete={"password"}
                                             variant="standard"
                                             onChange={(e) => setCredenciais((old) => { return { ...old, password: e.target.value } })}
+                                            value={credenciais.password}
                                             onKeyUp={adicionar}
                                         />
                                     </Grid>
@@ -192,3 +203,5 @@ export default function Usuario() {
         </div>
     );
 }
+
+export default UsuarioCadastrar

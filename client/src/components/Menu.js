@@ -96,7 +96,6 @@ const Menu = (props) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   
   return ( 
     <> 

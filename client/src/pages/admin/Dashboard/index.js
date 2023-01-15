@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 
 import Menu from '../../../components/Menu.js';
 import imagem from '../../../assets/img/img.png'
@@ -24,7 +24,7 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <img src={imagem} />
+            <img src={imagem} alt={'imagen do gráfico'} />
           </Grid>
           <Box pt={4}>
             <Copyright />

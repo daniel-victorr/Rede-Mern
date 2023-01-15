@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
@@ -25,27 +24,34 @@ import Chip from '@material-ui/core/Chip';
 import useStyles from '../Usuarios/useStyles.js'
 import api from '../../../services/api.js';
 
-export default function Usuario() {
+const Usuario = () => {
     const classes = useStyles();
 
     //useState
     const [lista, setLista] = useState(() => { return [] })
+ 
+    //useEffect
+    useEffect(() => {
+        if (localStorage.getItem('Ecomerce') !== null) {
+          setLista(JSON.parse(localStorage.getItem('Ecomerce')))
+        }
+      }, [])
 
     //useEffect
     useEffect(() => {
-        api.get('/api/usuarios')
-            .then(valores => setLista(valores.data))
-            .catch((e) => console.error(e.message))
-    }, [])
-
-    // useNavigate
-    const Navigate = useNavigate()
-
+        localStorage.setItem('Ecomerce', JSON.stringify(lista))
+      }, [lista])
+    
         const excluir = async (id) => {
+            console.log(id)
           if (window.confirm('Você deseja realmente excluir?')){
-            let response = await api.delete(`/api/usuarios/${id}`)
-            if (response.status == 201){
-               window.location.href = '/admin/usuarios'
+            let response = await api.delete(`/api/usuarios/id`)
+
+            if (response.status === 201){
+                let newLista = lista.filter((item) => {
+                     return item.id !== id})
+
+               setLista(() => { return newLista})
            }else{
             alert('Ocorreu um erro. Por favor tente novamente.')
            }
@@ -81,7 +87,7 @@ export default function Usuario() {
                                                 <TableBody>
                                                     {lista.map((row) => (
                                                         <TableRow
-                                                            key={row._id}
+                                                            key={row.id}
                                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                         >
                                                             <TableCell component="th" scope="row">
@@ -89,7 +95,7 @@ export default function Usuario() {
                                                             </TableCell>
                                                             <TableCell align="center">{row.sobreNome}</TableCell>
                                                             <TableCell align="center">{row.email}</TableCell>
-                                                            <TableCell align="center">{row.tipo == 1 ?
+                                                            <TableCell align="center">{row.tipo === 1 ?
                                                              <Chip
                                                                 label="Administrador"
                                                                 color="primary"
@@ -103,7 +109,7 @@ export default function Usuario() {
                                                             <TableCell align="center">
                                                                 <ButtonGroup aria-label="outlined primary button group">
                                                                     <Button color='primary'> EDITAR </Button>
-                                                                    <Button color='secondary' onClick={()=> {excluir(row._id)}}> EXCLUIR </Button>
+                                                                    <Button color='secondary' onClick={()=> {excluir(row.id)}}> EXCLUIR </Button>
                                                                 </ButtonGroup>
                                                             </TableCell>
                                                         </TableRow>
@@ -125,5 +131,7 @@ export default function Usuario() {
                 </Container>
             </main>
         </div>
-    );
+    ); 
 }
+
+export default Usuario; 
